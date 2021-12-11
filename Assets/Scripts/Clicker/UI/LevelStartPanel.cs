@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Clicker.ScriptableObjects;
 using TMPro;
 using UnityEngine;
@@ -22,6 +21,7 @@ namespace Clicker.UI
             _image.sprite = level.BackgroundSprite;
             _title.text = level.LevelName;
             _stars.SetFullness(level.Stars);
+            _leaderBoard.ShowLeadersForLevel(level.ID);
         }
 
         private void OnEnable() => _startLevelButton.onClick.AddListener(OnStartButtonClicked);

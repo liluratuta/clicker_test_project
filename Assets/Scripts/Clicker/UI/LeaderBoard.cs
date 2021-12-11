@@ -1,27 +1,50 @@
 using System.Collections.Generic;
+using Clicker.RemoteInfo;
+using Clicker.RemoteInfo.JSONTypes;
 using UnityEngine;
 
 namespace Clicker.UI
 {
+    [RequireComponent(typeof(RemoteLevelsInfo))]
     public class LeaderBoard : MonoBehaviour
     {
         [SerializeField] private LeaderBoardLine _leaderBoardLinePrefab;
-
-        public void ShowLeaders(List<(string name, int value)> leaders)
+        private IRemoteLevelsInfo _remoteLevelsInfo;
+        
+        public void ShowLeadersForLevel(int levelID)
         {
-            foreach (var (label, value) in leaders)
-            {
-                var line = CreateLine();
+            _remoteLevelsInfo.RequestLeaderboards(levelID, DisplayLeaderboard);
+        }
 
-                line.Label = label;
-                line.Value = value;
+        private void DisplayLeaderboard(List<Leaderboard> leaderboards)
+        {
+            ClearLines();
+            
+            foreach (var leaderboard in leaderboards)
+            {
+                AddLine(leaderboard.name, (float)leaderboard.time);
             }
         }
 
-        private LeaderBoardLine CreateLine()
+        private void Awake()
+        {
+            _remoteLevelsInfo = GetComponent<IRemoteLevelsInfo>();
+        }
+
+        private void AddLine(string playerName, float time)
         {
             var line = Instantiate(_leaderBoardLinePrefab, transform);
-            return line;
+
+            line.Label = playerName;
+            line.Value = time;
+        }
+
+        private void ClearLines()
+        {
+            foreach (Transform child in transform)
+            {
+                Destroy(child.gameObject);
+            }
         }
     }
 }

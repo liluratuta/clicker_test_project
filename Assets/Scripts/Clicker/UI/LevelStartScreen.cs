@@ -1,6 +1,5 @@
 using System;
 using Clicker.Mediators;
-using Clicker.Menu;
 using Clicker.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.UI;

@@ -10,9 +10,9 @@ namespace Clicker.UI
             set => _label.text = value;
         }
 
-        public int Value
+        public float Value
         {
-            set => _value.text = value.ToString();
+            set => _value.text = value.ToString("F1");
         }
         
         [SerializeField] private TMP_Text _label;
