@@ -35,5 +35,11 @@ namespace Clicker.RemoteInfo.JSONTypes
         public Level level_2;
         public Level level_3;
         public Level level_4;
+
+        public Level emptyLevel = new Level()
+        {
+            leaderboard = new List<Leaderboard>(),
+            stars = "0"
+        };
     }
 }

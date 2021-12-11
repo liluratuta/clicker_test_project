@@ -63,7 +63,7 @@ namespace Clicker.RemoteInfo
                 2 => _levelsInfo.level_2,
                 3 => _levelsInfo.level_3,
                 4 => _levelsInfo.level_4,
-                _ => throw new ArgumentOutOfRangeException(nameof(levelID), levelID, null)
+                _ => _levelsInfo.emptyLevel
             };
         }
 
