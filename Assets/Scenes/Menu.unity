@@ -4385,6 +4385,7 @@ GameObject:
   - component: {fileID: 1376316190}
   - component: {fileID: 1376316189}
   - component: {fileID: 1376316191}
+  - component: {fileID: 1376316192}
   m_Layer: 5
   m_Name: Leader Board
   m_TagString: Untagged
@@ -4474,6 +4475,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _leaderBoardLinePrefab: {fileID: 7892421417318220726, guid: 5f73ff49e847a8749a33e0af7e3ee59e, type: 3}
+--- !u!114 &1376316192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376316187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5df9fc5319c7e654cb5d68506a444045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1396009667
 GameObject:
   m_ObjectHideFlags: 0
