@@ -7,9 +7,9 @@ namespace Clicker.RemoteInfo
     public class LeaderboardsDeferredResponse : IDeferredResponse
     {
         private readonly int _levelID;
-        private readonly Action<List<Leaderboard>> _response;
+        private readonly Action<int, List<Leaderboard>> _response;
 
-        public LeaderboardsDeferredResponse(int levelID, Action<List<Leaderboard>> response)
+        public LeaderboardsDeferredResponse(int levelID, Action<int, List<Leaderboard>> response)
         {
             _levelID = levelID;
             _response = response;
@@ -18,7 +18,7 @@ namespace Clicker.RemoteInfo
         public void Execute(ILevelsInfo levelsInfo)
         {
             var leaderboards = levelsInfo.GetLeaderboardsFromLevel(_levelID);
-            _response?.Invoke(leaderboards);
+            _response?.Invoke(_levelID, leaderboards);
         }
     }
 }

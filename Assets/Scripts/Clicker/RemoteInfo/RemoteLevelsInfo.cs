@@ -7,29 +7,29 @@ using UnityEngine.Networking;
 
 namespace Clicker.RemoteInfo
 {
-    public class RemoteLevelsInfo : MonoBehaviour, ILevelsInfo, IRemoteLevelsInfo
+    public class RemoteLevelsInfo : MonoBehaviour, ILevelsInfo
     {
         private const string URL = "https://api.npoint.io/013d8e4dfd4ab3d73b57";
         private readonly Queue<IDeferredResponse> _deferredResponses = new Queue<IDeferredResponse>();
         private Root _levelsInfo;
         private bool _isLevelInfoReady;
 
-        public void RequestStars(int levelID, Action<int> response)
+        public void RequestStars(int levelID, Action<int, int> response)
         {
             if (_isLevelInfoReady)
             {
-                response?.Invoke(GetStarsFromLevel(levelID));
+                response?.Invoke(levelID, GetStarsFromLevel(levelID));
                 return;
             }
 
             _deferredResponses.Enqueue(new StarsDeferredResponse(levelID, response));
         }
 
-        public void RequestLeaderboards(int levelID, Action<List<Leaderboard>> response)
+        public void RequestLeaderboards(int levelID, Action<int, List<Leaderboard>> response)
         {
             if (_isLevelInfoReady)
             {
-                response?.Invoke(GetLeaderboardsFromLevel(levelID));
+                response?.Invoke(levelID, GetLeaderboardsFromLevel(levelID));
                 return;
             }
 
