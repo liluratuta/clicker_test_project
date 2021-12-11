@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Clicker.Game;
 using UnityEngine;
 
 namespace Clicker.ScriptableObjects
@@ -5,6 +7,7 @@ namespace Clicker.ScriptableObjects
     [CreateAssetMenu(fileName = "Level", menuName = "Clicker/Level")]
     public class Level : ScriptableObject
     {
+        public List<GameResult> LocalGameResults => _localGameResults;
         public int ID => _id;
         public string LevelName => _levelName;
 
@@ -16,18 +19,19 @@ namespace Clicker.ScriptableObjects
 
         public Sprite BonusSprite => _bonusSprite;
 
-        public int Stars
-        {
-            get => _stars;
-            set => _stars = value;
-        }
-
         [SerializeField, Min(0)] private int _id;
         [SerializeField] private string _levelName;
         [SerializeField, Min(0)] private int _goalClickCount;
-        [SerializeField, Range(0, 5)] private int _stars;
         [SerializeField] private Sprite _backgroundSprite;
         [SerializeField] private Sprite _buttonSprite;
         [SerializeField] private Sprite _bonusSprite;
+        
+        [SerializeField, HideInInspector]
+        private List<GameResult> _localGameResults = new List<GameResult>();
+
+        public void AddGameResult(int playerID, string playerName, float time)
+        {
+            _localGameResults.Add(new GameResult(playerID, playerName, time));
+        }
     }
 }

@@ -12,17 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f55aa44a4f4c854488b6e2899ddef21, type: 3}
   m_Name: Game Data
   m_EditorClassIdentifier: 
-  _playerID: 0
+  _playerID: 23421
+  _playerName: You
   _levels:
   - {fileID: 11400000, guid: a0e72fb23bd5606488301b20d0589626, type: 2}
   - {fileID: 11400000, guid: 8d9ecfc952179b74f97301ea0c7a1de3, type: 2}
   - {fileID: 11400000, guid: 844565a4109baaa42a1c1e583c158a34, type: 2}
   - {fileID: 11400000, guid: dfee5b2166ccf6d4e94078c6cd9474c7, type: 2}
-  _selectedLevel: {fileID: 11400000, guid: 4c31525f5cca9d24eabc6fb3be4bf31e, type: 2}
-  _gameResults:
-  - levelID: 0
-    time: 5.5401773
-  - levelID: 1
-    time: 6.0798907
-  - levelID: 0
-    time: 6.1823874
+  _selectedLevel: {fileID: 11400000, guid: 844565a4109baaa42a1c1e583c158a34, type: 2}
