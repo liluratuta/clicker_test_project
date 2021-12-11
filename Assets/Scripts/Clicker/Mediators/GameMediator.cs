@@ -15,7 +15,7 @@ namespace Clicker.Mediators
         [SerializeField] private GameFinishScreen _gameFinishScreen;
         [SerializeField] private Background _background;
 
-        public void DisplayTimer(int time) => _timerLabel.text = time.ToString();
+        public void DisplayTimer(float time) => _timerLabel.text = time.ToString("F1");
         public void DisplayGoalScore(int goalScore) => _goalScoreLabel.text = goalScore.ToString();
 
         public void InitializeScorePanel(int goalScore) => _scorePanel.Initialize(goalScore);

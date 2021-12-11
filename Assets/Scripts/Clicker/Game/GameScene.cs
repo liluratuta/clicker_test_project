@@ -1,4 +1,3 @@
-using System;
 using Clicker.Game.ClickTargets;
 using Clicker.Mediators;
 using Clicker.ScriptableObjects;
@@ -47,7 +46,7 @@ namespace Clicker.Game
             }
             
             _elapsedTime += Time.deltaTime;
-            _gameMediator.DisplayTimer((int)_elapsedTime);
+            _gameMediator.DisplayTimer(_elapsedTime);
         }
 
         private void OnEnable() => _clickTarget.PointsEarned += OnTargetClicked;
@@ -61,6 +60,7 @@ namespace Clicker.Game
             if (_score >= _level.GoalClickCount)
             {
                 _gameMediator.DisplayGameFinishScreen((int)_elapsedTime);
+                _gameData.AddGameResult(_elapsedTime);
                 StopGame();
                 return;
             }
