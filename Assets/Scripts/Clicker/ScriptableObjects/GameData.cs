@@ -9,6 +9,7 @@ namespace Clicker.ScriptableObjects
     public class GameData : ScriptableObject
     {
         public int PlayerID => _playerID;
+        public string PlayerName => _playerName;
 
         public Level SelectedLevel
         {
@@ -18,21 +19,11 @@ namespace Clicker.ScriptableObjects
 
         public List<Level> Levels => _levels;
 
+        [Header("Player")]
         [SerializeField] private int _playerID;
+        [SerializeField] private string _playerName;
+        [Header("Levels")]
         [SerializeField] private List<Level> _levels = new List<Level>();
         [SerializeField] private Level _selectedLevel;
-        [SerializeField] private List<GameResult> _gameResults = new List<GameResult>();
-
-        public void AddGameResult(float time)
-        {
-            var levelID = _selectedLevel.ID;
-            _gameResults.Add(new GameResult(levelID, time));
-        }
-
-        public List<GameResult> GetGameResultsByLevelID(int levelID)
-        {
-            var result = _gameResults.Where(gameResult => gameResult.levelID == levelID).ToList();
-            return result;
-        }
     }
 }

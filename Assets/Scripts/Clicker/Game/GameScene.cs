@@ -60,7 +60,7 @@ namespace Clicker.Game
             if (_score >= _level.GoalClickCount)
             {
                 _gameMediator.DisplayGameFinishScreen((int)_elapsedTime);
-                _gameData.AddGameResult(_elapsedTime);
+                _level.AddGameResult(_gameData.PlayerID, _gameData.PlayerName, _elapsedTime);
                 StopGame();
                 return;
             }
