@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e94442969cbe424a94c7e1bd6c6231b, type: 3}
+  m_Name: Level 0
+  m_EditorClassIdentifier: 
+  _id: 0
+  _levelName: Level 0
+  _goalClickCount: 12
+  _backgroundSprite: {fileID: -6513113151970543316, guid: ffd2b6a01a4046e4cb9b8f7c43872488, type: 3}
+  _buttonSprite: {fileID: -8327080082498708921, guid: ffd2b6a01a4046e4cb9b8f7c43872488, type: 3}
+  _bonusSprite: {fileID: 2811651128759026424, guid: ffd2b6a01a4046e4cb9b8f7c43872488, type: 3}
+  _localGameResults: []
