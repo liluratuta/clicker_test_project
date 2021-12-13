@@ -1,3 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Clicker.Game.Bonuses;
 using Clicker.Game.ClickTargets;
 using Clicker.Mediators;
 using Clicker.ScriptableObjects;
@@ -12,12 +16,16 @@ namespace Clicker.Game
         [SerializeField] private GameMediator _gameMediator;
         [SerializeField] private GameData _gameData;
         [SerializeField] private ClickTarget _clickTarget;
+        [SerializeField] private BonusBox _bonusBox;
 
+        private readonly float _maxBonusBoxSpawnTime = 10f;
+        
         private Level _level;
         private GameFieldBounds _gameFieldBounds;
         private int _score;
         private float _elapsedTime;
         private bool _isGamePlaying;
+        private HashSet<Bonus> _activeBonuses = new HashSet<Bonus>();
 
         private void Awake()
         {
@@ -36,6 +44,9 @@ namespace Clicker.Game
             
             _gameMediator.DisplayGoalScore(_level.GoalClickCount);
             _gameMediator.InitializeScorePanel(_level.GoalClickCount);
+
+            _bonusBox.gameObject.SetActive(false);
+            StartCoroutine(BonusBoxSpawning());
         }
 
         private void Update()
@@ -49,12 +60,50 @@ namespace Clicker.Game
             _gameMediator.DisplayTimer(_elapsedTime);
         }
 
-        private void OnEnable() => _clickTarget.PointsEarned += OnTargetClicked;
-        private void OnDisable() => _clickTarget.PointsEarned -= OnTargetClicked;
+        private void OnEnable()
+        {
+            _clickTarget.PointsEarned += OnTargetClicked;
+            _bonusBox.Clicked += OnBonusBoxClicked;
+        }
+
+        private void OnDisable()
+        {
+            _clickTarget.PointsEarned -= OnTargetClicked;
+            _bonusBox.Clicked -= OnBonusBoxClicked;
+        }
+
+        private void OnBonusBoxClicked()
+        {
+            var allBonuses = _bonusBox.Bonuses;
+            var readyBonuses = allBonuses.Where(bonus => !_activeBonuses.Contains(bonus)).ToList();
+
+            if (readyBonuses.Count == 0)
+            {
+                _bonusBox.gameObject.SetActive(false);
+                return;
+            }
+
+            var bonus = readyBonuses[Random.Range(0, readyBonuses.Count)];
+
+            _clickTarget.ApplyBonus(bonus);
+            _gameMediator.SetBonusIconActive(bonus, isActive: true);
+            _activeBonuses.Add(bonus);
+            
+            bonus.Completed += OnBonusCompleted;
+            
+            _bonusBox.gameObject.SetActive(false);
+        }
+
+        private void OnBonusCompleted(Bonus bonus)
+        {
+            bonus.Completed -= OnBonusCompleted;
+            _activeBonuses.Remove(bonus);
+            _gameMediator.SetBonusIconActive(bonus, isActive: false);
+        }
 
         private void OnTargetClicked(int points)
         {
-            _score++;
+            _score += points;
             _gameMediator.DisplayScore(_score);
 
             if (_score >= _level.GoalClickCount)
@@ -88,6 +137,36 @@ namespace Clicker.Game
         {
             var randomPosition = _gameFieldBounds.GetRandomPositionForSquare(_clickTarget.Size);
             _clickTarget.SetPosition(randomPosition);
+        }
+
+        private IEnumerator BonusBoxSpawning()
+        {
+            void MoveToRandomPosition()
+            {
+                var randomPosition = _gameFieldBounds.GetRandomPositionForSquare(_bonusBox.Size);
+                _bonusBox.Position = randomPosition;
+            }
+
+            bool IsPossibleBonusBoxSpawn()
+            {
+                if (_bonusBox.gameObject.activeSelf)
+                {
+                    return false;
+                }
+                
+                return _activeBonuses.Count < _bonusBox.Bonuses.Count;
+            }
+
+            while (true)
+            {
+                yield return new WaitForSeconds(Random.Range(0f, _maxBonusBoxSpawnTime));
+                
+                if (IsPossibleBonusBoxSpawn())
+                {
+                    _bonusBox.gameObject.SetActive(true);
+                    MoveToRandomPosition();
+                }
+            }
         }
     }
 }

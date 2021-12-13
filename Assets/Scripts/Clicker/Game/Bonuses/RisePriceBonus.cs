@@ -1,25 +1,21 @@
-using DG.Tweening;
 using UnityEngine;
 
 namespace Clicker.Game.Bonuses
 {
-    public class RisePriceBonus : Bonus, IBonusDisplayable
+    [CreateAssetMenu(fileName = "Rise Price Bonus", menuName = "Clicker/Bonuses/Rise Price Bonus")]
+    public class RisePriceBonus : Bonus
     {
-        public Sprite Icon => _icon;
+        private const int ScoreMultiplier = 2;
+        public override float Duration { get; } = 5f;
 
-        [SerializeField, Range(1, 5)] private int _scoreMultiplier = 2;
-        [SerializeField, Min(0)] private float _duration = 5f;
-        [SerializeField] private Sprite _icon;
-
-        public override void Apply(IBonusApplicator applicator)
+        public override void Apply(IBonusSubject bonusSubject)
         {
-            applicator.SetPointsMultiplier(_scoreMultiplier);
-            DeferredComplete(applicator, _duration);
+            bonusSubject.SetPointsMultiplier(ScoreMultiplier);
         }
-
-        protected override void Complete(IBonusApplicator applicator)
+        
+        protected override void PerformComplete(IBonusSubject bonusSubject)
         {
-            applicator.ClearPointsMultiplier();
+            bonusSubject.ClearPointsMultiplier();
         }
     }
 }

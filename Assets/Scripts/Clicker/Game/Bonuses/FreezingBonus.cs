@@ -1,24 +1,21 @@
-using DG.Tweening;
 using UnityEngine;
 
 namespace Clicker.Game.Bonuses
 {
-    public class FreezingBonus : Bonus, IBonusDisplayable
+    [CreateAssetMenu(fileName = "Freezing Bonus", menuName = "Clicker/Bonuses/Freezing Bonus")]
+
+    public class FreezingBonus : Bonus
     {
-        public Sprite Icon => _icon;
+        public override float Duration { get; } = 5f;
 
-        [SerializeField, Min(0)] private float _duration = 5f;
-        [SerializeField] private Sprite _icon;
-
-        public override void Apply(IBonusApplicator applicator)
+        public override void Apply(IBonusSubject bonusSubject)
         {
-            applicator.SetFrizzing();
-            DeferredComplete(applicator, _duration);
+            bonusSubject.SetFrizzing();
         }
 
-        protected override void Complete(IBonusApplicator applicator)
+        protected override void PerformComplete(IBonusSubject bonusSubject)
         {
-            applicator.CancelFrizzing();
+            bonusSubject.CancelFrizzing();
         }
     }
 }

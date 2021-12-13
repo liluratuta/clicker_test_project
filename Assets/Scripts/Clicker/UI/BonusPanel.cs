@@ -1,33 +1,44 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using Clicker.Game;
+using Clicker.Game.Bonuses;
 using UnityEngine;
 
 namespace Clicker.UI
 {
     public class BonusPanel : MonoBehaviour
     {
-        [SerializeField] private List<BonusTypeIconPair> _bonusTypeIconPairs = new List<BonusTypeIconPair>();
+        private readonly Dictionary<IBonusView, BonusIcon> _icons = new Dictionary<IBonusView, BonusIcon>();
+        [SerializeField] private BonusIcon _bonusIconPrefab;
 
-        public void SetBonusActive(BonusType bonusType, bool isActive)
+        public void SetBonusActive(IBonusView bonusView, bool isActive)
         {
-            _bonusTypeIconPairs.First(x => x.type == bonusType).icon.SetActive(isActive);
-        }
-
-        private void Start()
-        {
-            foreach (var pair in _bonusTypeIconPairs)
+            if (isActive)
             {
-                pair.icon.SetActive(isActive: false);
+                AddBonusIcon(bonusView);
+                return;
             }
+
+            if (!IsExistBonusIcon(bonusView)) return;
+            
+            RemoveBonusIcon(bonusView);
         }
 
-        [Serializable]
-        private struct BonusTypeIconPair
+        private bool IsExistBonusIcon(IBonusView bonusView)
         {
-            public BonusType type;
-            public BonusIcon icon;
+            return _icons.ContainsKey(bonusView);
+        }
+
+        private void RemoveBonusIcon(IBonusView bonusView)
+        {
+            var image = _icons[bonusView];
+            _icons.Remove(bonusView);
+            Destroy(image.gameObject);
+        }
+
+        private void AddBonusIcon(IBonusView bonusView)
+        {
+            var icon = Instantiate(_bonusIconPrefab, transform);
+            icon.Sprite = bonusView.Icon;
+            _icons.Add(bonusView, icon);
         }
     }
 }

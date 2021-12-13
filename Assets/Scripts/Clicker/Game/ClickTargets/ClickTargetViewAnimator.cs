@@ -36,9 +36,16 @@ namespace Clicker.Game.ClickTargets
         [ContextMenu("Show Bonus Label")]
         public void Show2XBonusLabel()
         {
+            ShowBonusLabel(2);
+        }
+
+        public void ShowBonusLabel(int scoreMultiplier)
+        {
             _bonusLabel.enabled = true;
+            _bonusLabel.text = $"{scoreMultiplier}X";
             _fadingCoroutine = StartCoroutine(BonusLabelFading());
         }
+
         [ContextMenu("Hide Bonus Label")]
         public void HideBonusLabel()
         {
@@ -76,16 +83,6 @@ namespace Clicker.Game.ClickTargets
                 _bonusLabel.color = color;
                 yield return null;
             }
-        }
-
-        public void IncreaseSize(float increaseFactor)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void ShowBonusLabel(int scoreMultiplier)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

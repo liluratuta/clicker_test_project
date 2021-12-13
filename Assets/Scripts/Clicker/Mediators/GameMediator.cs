@@ -1,4 +1,5 @@
 using Clicker.Game;
+using Clicker.Game.Bonuses;
 using Clicker.UI;
 using TMPro;
 using UnityEngine;
@@ -21,8 +22,8 @@ namespace Clicker.Mediators
         public void InitializeScorePanel(int goalScore) => _scorePanel.Initialize(goalScore);
         public void DisplayScore(int score) => _scorePanel.DisplayScore(score);
 
-        public void SetBonusIconActive(BonusType bonusType, bool isActive) =>
-            _bonusPanel.SetBonusActive(bonusType, isActive);
+        public void SetBonusIconActive(IBonusView bonusView, bool isActive) =>
+            _bonusPanel.SetBonusActive(bonusView, isActive);
 
         public void DisplayGameFinishScreen(int elapsedTime) => _gameFinishScreen.Display(elapsedTime);
         

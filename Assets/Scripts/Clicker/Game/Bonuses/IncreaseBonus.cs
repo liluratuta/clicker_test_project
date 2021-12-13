@@ -2,23 +2,21 @@ using UnityEngine;
 
 namespace Clicker.Game.Bonuses
 {
-    public class IncreaseBonus : Bonus, IBonusDisplayable
+    [CreateAssetMenu(fileName = "Increase Bonus", menuName = "Clicker/Bonuses/Increase Bonus")]
+    public class IncreaseBonus : Bonus
     {
-        public Sprite Icon => _icon;
+        private const int IncreaseFactor = 2;
+        
+        public override float Duration { get; } = 5;
 
-        [SerializeField, Range(1, 5)] private int _increaseFactor = 2;
-        [SerializeField, Min(0)] private float _duration = 5f;
-        [SerializeField] private Sprite _icon;
-
-        public override void Apply(IBonusApplicator applicator)
+        public override void Apply(IBonusSubject bonusSubject)
         {
-            applicator.IncreaseSize(_increaseFactor);
-            DeferredComplete(applicator, _duration);
+            bonusSubject.IncreaseSize(IncreaseFactor);
         }
 
-        protected override void Complete(IBonusApplicator applicator)
+        protected override void PerformComplete(IBonusSubject bonusSubject)
         {
-            applicator.SetOriginalSize();
+            bonusSubject.SetOriginalSize();
         }
     }
 }

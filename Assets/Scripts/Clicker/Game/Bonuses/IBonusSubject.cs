@@ -1,9 +1,9 @@
-namespace Clicker.Game.Bonuses
+﻿namespace Clicker.Game.Bonuses
 {
-    public interface IBonusApplicator
+    public interface IBonusSubject
     {
-        void IncreaseSize(float increaseFactor);
         void SetOriginalSize();
+        void IncreaseSize(int increaseFactor);
         void SetPointsMultiplier(int scoreMultiplier);
         void ClearPointsMultiplier();
         void SetFrizzing();

@@ -1,17 +1,25 @@
-using DG.Tweening;
+﻿using System;
 using UnityEngine;
 
 namespace Clicker.Game.Bonuses
 {
-    public abstract class Bonus : ScriptableObject, IBonus
+    public abstract class Bonus : ScriptableObject, IBonus, IBonusView
     {
-        public abstract void Apply(IBonusApplicator applicator);
+        public event Action<Bonus> Completed;
+        
+        public Sprite Icon => _icon;
+        public abstract float Duration { get; }
+        
+        [SerializeField] private Sprite _icon;
+        
+        public abstract void Apply(IBonusSubject bonusSubject);
 
-        protected abstract void Complete(IBonusApplicator applicator);
-
-        protected void DeferredComplete(IBonusApplicator applicator, float duration)
+        public void Complete(IBonusSubject bonusSubject)
         {
-            DOTween.Sequence().AppendInterval(duration).AppendCallback(() => Complete(applicator));
+            PerformComplete(bonusSubject);
+            Completed?.Invoke(this);
         }
+
+        protected abstract void PerformComplete(IBonusSubject bonusSubject);
     }
 }
