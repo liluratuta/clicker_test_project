@@ -19,7 +19,7 @@ namespace Clicker.UI
         public void Display(int time)
         {
             gameObject.SetActive(true);
-            _timeLabel.text = time.ToString();
+            _timeLabel.text = time.ToString("F1");
             _screenAnimator.AnimateAppearance();
         }
 
