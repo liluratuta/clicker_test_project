@@ -15,7 +15,13 @@ MonoBehaviour:
   _id: 3
   _levelName: Level 3
   _goalClickCount: 10
-  _stars: 2
   _backgroundSprite: {fileID: 1248069561367767136, guid: 893b38a62068395469c5b409c3f95ef0, type: 3}
   _buttonSprite: {fileID: -5587797496040920184, guid: 893b38a62068395469c5b409c3f95ef0, type: 3}
-  _bonusSprite: {fileID: -7397473143875487808, guid: 893b38a62068395469c5b409c3f95ef0, type: 3}
+  _bonusBoxSprite: {fileID: -7397473143875487808, guid: 893b38a62068395469c5b409c3f95ef0, type: 3}
+  _localGameResults:
+  - playerID: 23421
+    playerName: You
+    time: 6.5591154
+  - playerID: 23421
+    playerName: You
+    time: 27.44378

@@ -17,14 +17,14 @@ namespace Clicker.ScriptableObjects
 
         public Sprite ButtonSprite => _buttonSprite;
 
-        public Sprite BonusSprite => _bonusSprite;
+        public Sprite BonusBoxSprite => _bonusBoxSprite;
 
         [SerializeField, Min(0)] private int _id;
         [SerializeField] private string _levelName;
         [SerializeField, Min(0)] private int _goalClickCount;
         [SerializeField] private Sprite _backgroundSprite;
         [SerializeField] private Sprite _buttonSprite;
-        [SerializeField] private Sprite _bonusSprite;
+        [SerializeField] private Sprite _bonusBoxSprite;
         
         [SerializeField, HideInInspector]
         private List<GameResult> _localGameResults = new List<GameResult>();

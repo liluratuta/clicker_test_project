@@ -15,7 +15,16 @@ MonoBehaviour:
   _id: 2
   _levelName: Level 2
   _goalClickCount: 10
-  _stars: 5
   _backgroundSprite: {fileID: -7409730035925219397, guid: 536ce6c428e0d8f46823a75891db5511, type: 3}
   _buttonSprite: {fileID: -2601284298883841957, guid: 536ce6c428e0d8f46823a75891db5511, type: 3}
-  _bonusSprite: {fileID: -1876444221094193088, guid: 536ce6c428e0d8f46823a75891db5511, type: 3}
+  _bonusBoxSprite: {fileID: -1876444221094193088, guid: 536ce6c428e0d8f46823a75891db5511, type: 3}
+  _localGameResults:
+  - playerID: 23421
+    playerName: You
+    time: 34.197094
+  - playerID: 23421
+    playerName: You
+    time: 16.238571
+  - playerID: 23421
+    playerName: You
+    time: 27.298046

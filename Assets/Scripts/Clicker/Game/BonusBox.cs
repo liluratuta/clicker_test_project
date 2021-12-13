@@ -14,12 +14,18 @@ namespace Clicker.Game
         public Vector2 Size => _collider.size;
         public List<Bonus> Bonuses => _bonuses;
 
+        public Sprite Icon
+        {
+            set => _view.sprite = value;
+        }
+
         public Vector2 Position
         {
             set => transform.position = value;
         }
 
         [SerializeField] private List<Bonus> _bonuses = new List<Bonus>();
+        [SerializeField] private SpriteRenderer _view;
         private BoxCollider2D _collider;
 
         private void Awake() => _collider = GetComponent<BoxCollider2D>();

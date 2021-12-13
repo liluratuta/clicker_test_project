@@ -15,7 +15,7 @@ MonoBehaviour:
   _id: 4
   _levelName: Level 4
   _goalClickCount: 10
-  _stars: 2
   _backgroundSprite: {fileID: 7458536206327102826, guid: aa41dc5bf1fb5034a99ec5c611c0e433, type: 3}
   _buttonSprite: {fileID: -572823766470709722, guid: aa41dc5bf1fb5034a99ec5c611c0e433, type: 3}
-  _bonusSprite: {fileID: -6551275843172471271, guid: aa41dc5bf1fb5034a99ec5c611c0e433, type: 3}
+  _bonusBoxSprite: {fileID: -6551275843172471271, guid: aa41dc5bf1fb5034a99ec5c611c0e433, type: 3}
+  _localGameResults: []

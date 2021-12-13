@@ -17,5 +17,5 @@ MonoBehaviour:
   _goalClickCount: 12
   _backgroundSprite: {fileID: -6513113151970543316, guid: ffd2b6a01a4046e4cb9b8f7c43872488, type: 3}
   _buttonSprite: {fileID: -8327080082498708921, guid: ffd2b6a01a4046e4cb9b8f7c43872488, type: 3}
-  _bonusSprite: {fileID: 2811651128759026424, guid: ffd2b6a01a4046e4cb9b8f7c43872488, type: 3}
+  _bonusBoxSprite: {fileID: 2811651128759026424, guid: ffd2b6a01a4046e4cb9b8f7c43872488, type: 3}
   _localGameResults: []

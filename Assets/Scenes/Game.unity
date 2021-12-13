@@ -4234,6 +4234,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8816779b1e3ae3245ba119794c125d56, type: 2}
   - {fileID: 11400000, guid: f5c3ed6441cd00949bae2e892e5a2467, type: 2}
   - {fileID: 11400000, guid: 7dd496945a15e124ca1066334bc5564f, type: 2}
+  _view: {fileID: 203698230}
 --- !u!1 &1835823951
 GameObject:
   m_ObjectHideFlags: 0
@@ -5052,7 +5053,7 @@ MonoBehaviour:
   m_ChildAlignment: 5
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0

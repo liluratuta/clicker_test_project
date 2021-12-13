@@ -46,6 +46,7 @@ namespace Clicker.Game
             _gameMediator.InitializeScorePanel(_level.GoalClickCount);
 
             _bonusBox.gameObject.SetActive(false);
+            _bonusBox.Icon = _level.BonusBoxSprite;
             StartCoroutine(BonusBoxSpawning());
         }
 
